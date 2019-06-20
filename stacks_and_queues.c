@@ -41,7 +41,7 @@ int queue_display() {
   printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*\n");
   printf("\n        Queue\n");
   printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*\n");
-  printf("\n1. Inqueue\n2. Dequeue\n3. View Queue\n4. Back to previous menu\n\n>");
+  printf("\n1. Enqueue\n2. Dequeue\n3. View Queue\n4. Back to previous menu\n\n>");
   scanf("%d",&c);
   return c;
 }
@@ -53,13 +53,13 @@ void push_or_inqueue(int n,int arr[n],int *i,int j) {
       printf(" Pushed :\n\n>");
     }
     else if(j==2) {
-      printf(" Inqueued :\n\n>");
+      printf(" Enqueued :\n\n>");
     }
     scanf("%d",&arr[(*i)]);
-    printf("\n\nExecution Successfull\n\n");
+    printf("\n\nMemory remaining in Data Structure : %d\n\n",(n-((*i)+1)));
   }
   else {
-    printf("\n\nData Struct !!\n\n");
+    printf("\n\nData Structure full !!\n\n");
     (*i)--;
   }
 }
@@ -100,9 +100,28 @@ void display_data_structure(int n,int arr[n],int *i) {
 }
 
 void stack_operations(int y,int n,int arr[n],int *i) {
+  char decision;
   if(y==1) {
-    push_or_inqueue(n,arr,i,1);
-    (*i)++;
+    printf("\n\nDo you want to push elements continuosly ? [y/n]:\n\n>");
+    scanf(" %c",&decision);
+    while (1) {
+      if(decision=='y') {
+        for(int k=0;k<n;k++) {
+          push_or_inqueue(n,arr,i,1);
+          (*i)++;
+        }
+        break;
+      }
+      else if(decision=='n') {
+        push_or_inqueue(n,arr,i,1);
+        (*i)++;
+        break;
+      }
+      else {
+        printf("\n\nInvalid Option...try again :\n\n");
+        break;
+      }
+    }
   }
   else if(y==2) {
     pop(n,arr,i);
@@ -116,9 +135,28 @@ void stack_operations(int y,int n,int arr[n],int *i) {
 }
 
 void queue_operations(int y,int n,int arr[],int *i) {
+  char decision;
   if(y==1) {
-    push_or_inqueue(n,arr,i,2);
-    (*i)++;
+    printf("\n\nDo you want to Enqueue elements continuosly ? [y/n]:\n\n>");
+    scanf(" %c",&decision);
+    while (1) {
+      if(decision=='y') {
+        for(int k=0;k<n;k++) {
+          push_or_inqueue(n,arr,i,1);
+          (*i)++;
+        }
+        break;
+      }
+      else if(decision=='n') {
+        push_or_inqueue(n,arr,i,1);
+        (*i)++;
+        break;
+      }
+      else {
+        printf("\n\nInvalid Option...try again :\n\n");
+        break;
+      }
+    }
   }
   else if(y==2) {
     dequeue(n,arr,i);
